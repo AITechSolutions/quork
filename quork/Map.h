@@ -28,7 +28,7 @@ public:
 		std::string symbol = "";
 		std::string occupant = "";
 		std::string item = "";
-		Entity* pEntity;	// Superclass of Character
+		Entity* pEntity = nullptr;	// Superclass of Character
 	};
 	gridSquare baseGS;
 	int mapSize;

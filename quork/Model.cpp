@@ -220,7 +220,7 @@ void Model::showMapLocOccupant(int xoffset, int yoffset, int zoffset)
 
 /**
 * The moveCharacter() function updates the players coordinates and map attributes if there is no collision.
-* If ther is a collision it informs the player via console output. This function does not return any data.
+* If there is a collision it informs the player via console output. This function does not return any data.
 * @param pCharacter - Character(or Entity) pointer to the player character object.
 * @param xoffset - An int specifying the X offset from the current Character(or Entity) objects position.
 * @param yoffset - An int specifying the Y offset from the current Character(or Entity) objects position.
@@ -238,10 +238,20 @@ void Model::moveCharacter(Character* pCharacter, int xoffset, int yoffset, int z
 	}
 	else
 	{
+		// Store the characters coordinates in local variables for easy reuse
+		int currX = pCharacter->getXCoord();
+		int currY = pCharacter->getYCoord();
+		int currZ = pCharacter->getZCoord();
+
 		// Now we can move the character
-		// First we remove the occupant from the current grid sauare
-		pMap->setOccupant(pCharacter->getXCoord(), pCharacter->getYCoord(), pCharacter->getZCoord(), "");
-		//	pMap->setOccupant(convertXYtoindex(pCharacter->getXCoord(), pCharacter->getYCoord()), "");
+		// Remove the occupant from the current grid sauare
+		pMap->setOccupant(currX, currY, currZ, "");
+
+		// Remove the symbol from the current grid square
+		pMap->setSymbol(currX, currY, currZ, "");
+
+		// Set the entity pointer in the current gridsquare to NULL
+		pMap->setEntity(nullptr, currX, currY, currZ);
 
 		// Set the new x and y coordinates in the character object
 		pCharacter->setCharacterPos(xyzArray[0], xyzArray[1], xyzArray[2]);
@@ -249,8 +259,13 @@ void Model::moveCharacter(Character* pCharacter, int xoffset, int yoffset, int z
 		// Set the occupant in the destination grid square
 		pMap->setOccupant(xyzArray[0], xyzArray[1], xyzArray[2], pCharacter->getCharacterName());
 
+		// Set the symbol in the destination grid square
+		pMap->setSymbol(xyzArray[0], xyzArray[1], xyzArray[2], pCharacter->getMapSymbol());
 
-		// Show the current gridsquare properties
+		// Set the entity pointer to the characters pointer in the destination grid square
+		pMap->setEntity(pPlayerCharacter, xyzArray[0], xyzArray[1], xyzArray[2]);
+
+		// Show the current gridsquare properties for the player only
 		if (pCharacter == pPlayerCharacter)
 		{
 			showGsEprops(0, 0, 0);
