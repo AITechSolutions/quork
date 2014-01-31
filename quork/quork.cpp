@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 	}
 
 	
-	Model World(pGameEngine);
+	Model World(GameEngine);
 	Model * pWorld = &World;
 	if (!pWorld->isalive)
 	{
@@ -38,7 +38,7 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	Controller GameController(pGameEngine, pWorld);
+	Controller GameController(GameEngine, World);
 	Controller * pGameController = &GameController;
 	if (!pGameController->isalive)
 	{

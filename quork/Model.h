@@ -16,6 +16,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <memory>
 class Model
 {
 // Globals
@@ -27,13 +28,14 @@ public:
 
 	Character PC; Character* pPlayerCharacter = &PC;		// Instantiate and assign pointer to the Player Character
 
-	Character* pAnyCharacter;
+	std::shared_ptr<Character> pAnyCharacter;
 	std::string anystring;
 
 	Engine* pGameEngine;
 
-	Model(Engine *GameEngine);
+	Model(Engine &GameEngine);
 	~Model();
+
 
 	std::string getPlayerXYZLocation() const;
 	void setCharacterPosition(Character* character, int x, int y, int z);

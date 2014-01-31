@@ -14,7 +14,7 @@
 // Forward declarations
 
 // Constructor
-Model::Model(Engine *GameEngine) : isalive(true)
+Model::Model(Engine &GameEngine) : isalive(true)
 {
 	initPlayerCharacter();
 }

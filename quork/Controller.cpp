@@ -12,17 +12,13 @@
 #include <sstream>
 #include <algorithm>		// For use of std::transform
 
-using namespace std;
 
-Controller::Controller(Engine* GameEngine, Model* World) : pGameEngine(GameEngine), pWorldModel(World), isalive(true)
+Controller::Controller(Engine &GameEngine, Model &World) : pGameEngine(&GameEngine), pWorldModel(&World), isalive(true)
 //Controller::Controller(Engine* GameEngine) : pGameEngine(GameEngine), isalive(true)
 {
-	//std::cout << "Hi There - Game Controller at your service" << std::endl;
-	//std::cout << "Game Controller has a pointer to the GameEngine object located at: " << pGameEngine << std::endl;
-	//std::cout << "Game Controller has a pointer to the World Model object located at: " << pWorld << std::endl;
+
 	// Instantiate the Keyboard Input Parser and create a pointer to it
 
-	pWorldModel = World;
 	KeyboardParser KParser;
 	pKParser = &KParser;
 	keyboardParserChk();
@@ -55,8 +51,8 @@ void Controller::keyboardParserChk()
 */
 void Controller::getInput()
 {
-	cout << "Quork>";
-	getline(cin, instr);
+	std::cout << "Quork>";
+	getline(std::cin, instr);
 	
 	if (instr.length() == 0)
 		return;
@@ -73,14 +69,14 @@ void Controller::getInput()
 /**
 * The parseImput function .....
 */
-void Controller::parseInput(string sin)
+void Controller::parseInput(std::string sin)
 {
 	// Process common input items that do not need significant parsing
 	if (instr.compare("quit") == 0 || instr.compare("bye") == 0)
 		gamestarted = false;
 	else if (instr.compare("where am i") == 0)
 	{
-		std::cout << "Your X,Y coordinates are " << pWorldModel->getPlayerXYZLocation() << endl;
+		std::cout << "Your X,Y coordinates are " << pWorldModel->getPlayerXYZLocation() << std::endl;
 	}
 	else
 	{
@@ -127,7 +123,7 @@ void Controller::dispatchWorldModelMsg(std::vector<std::string> &cmsg)
 		pWorldModel->moveCharacter(pWorldModel->pPlayerCharacter, x, y, z);	// Move Command
 		break;
 	default: 
-		std::cout << "WorldModel Dispacher can not determine the intention of this command" << endl;
+		std::cout << "WorldModel Dispacher can not determine the intention of this command" << std::endl;
 	}
 }
 

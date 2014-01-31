@@ -19,6 +19,8 @@ Character::~Character()
 {
 }
 
+
+// Note The xPos, yPos, zPos variables and their get functions are inherrited from Entity.
 /**
 * The setCharacterPos() mutator function sets the X, Y, and Z coordinates of the Character object.
 * It returns no values.
@@ -32,7 +34,7 @@ void Character::setCharacterPos(int x, int y, int z)
 }
 
 /**
-	The setAttributes mutator function sets the Characters attributes. It does not return anything.
+	The setAttributes mutator() function sets the Characters attributes. It does not return anything.
 	@param n - The Characters name as a string.
 	@param mapsym - The Characters map symbol as a string.
 	@param blk - Boolean that indicats if the Character is blocking.
@@ -49,30 +51,6 @@ void Character::setAttributes(std::string n, std::string mapsym, bool blk)
 std::string Character::getMapSymbol() const
 {
 	return mapsymbol;
-}
-
-/**
-* The getXCoord() accessor function returns the characters X coordinate as an int.
-*/
-int Character::getXCoord() const
-{
-	return xPos;
-}
-
-/**
-* The getYCoord() accessor function returns the characters Y coordinate as an int.
-*/
-int Character::getYCoord() const
-{
-	return yPos;
-}
-
-/**
-* The getZCoord() accessor function returns the characters Z coordinate as an int.
-*/
-int Character::getZCoord() const
-{
-	return zPos;
 }
 
 

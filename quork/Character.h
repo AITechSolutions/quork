@@ -17,16 +17,13 @@
 class Character: public Entity
 {
 public:
-	std::string name;
 	std::string mapsymbol;
 
 	Character();
 	~Character();
 
 	void setCharacterPos(int x, int y, int z);
-	int getXCoord() const;
-	int getYCoord() const;
-	int getZCoord() const;
+	
 	std::string getCharacterName() const;
 
 	std::string getMapSymbol() const;

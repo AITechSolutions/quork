@@ -28,7 +28,7 @@ public:
 	std::string instr;
 	std::vector<std::string> cmdMsg;
 	
-	Controller(Engine* pGameEngine, Model* pWorld);
+	Controller(Engine &pGameEngine, Model &pWorld);
 	~Controller();
 
 	int cnvrtVectStrElementToInt(std::vector<std::string> &vec, int index);
